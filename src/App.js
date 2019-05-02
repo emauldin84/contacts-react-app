@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Contacts from './Contacts';
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      contactsList: [],
+    }
+  }
+
+  async componentDidMount() {
+    this._getContactsAPI();
+  }
+
+  _getContactsAPI = async () => {
+    const allContactsData = await axios.get(`https://demo1443058.mockable.io/codeproject_tutorial/api/contacts`);
+    // console.log(allContactsData.data.contacts);
+    this.setState({
+      contactsList: allContactsData.data.contacts,
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <Switch>
+        <Route path='/contacts'
+        render={(props) => (
+          <Contacts {...props}
+                    contacts={this.state.contactsList}
+          />
+        )}
+        />
+        <Redirect to='/contacts' />
+      </Switch>
+        
+      </div>
+    );
+  }
+
 }
 
 export default App;

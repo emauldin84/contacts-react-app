@@ -31,3 +31,18 @@
     transform: rotate(360deg);
   }
 }
+
+.contacts-list {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin: 10px 10px;
+  
+}
+.contacts-div {
+  overflow: scroll;
+  border: 1px solid rgba(0, 0, 0, .1);
+  height: 80vh;
+  width: 20%;
+
+}
