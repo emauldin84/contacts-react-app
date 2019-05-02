@@ -2,15 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 
 function Contacts({ contacts, match }) {
-    console.log( contacts )
-    console.log( match )
+    // console.log( contacts )
+    // console.log( match )
     const contactLinks = contacts.map((contact, i) => (
-        <NavLink key={i} className='contacts-list' to=''>{contact.name} {' '} {contact.surname}</NavLink>
+        <NavLink key={i} className='contacts-list active' to={`${match.path}/${i}`}>{contact.name} {' '} {contact.surname}</NavLink>
     ))
     return(
         <div>
-            <h3>Contacts</h3>
-            <div className='contacts-div'>
+            <div className='contacts-container'>
                 {contactLinks}
 
             </div>

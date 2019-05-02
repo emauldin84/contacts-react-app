@@ -4,6 +4,7 @@ import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import Contacts from './Contacts';
+import ContactDetails from './ContactDetails'
 
 class App extends React.Component {
   constructor(props){
@@ -28,6 +29,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+      <h3>Contacts</h3>
+      <div className='container'>
       <Switch>
         <Route path='/contacts'
         render={(props) => (
@@ -38,6 +41,15 @@ class App extends React.Component {
         />
         <Redirect to='/contacts' />
       </Switch>
+      <Route  path='/contacts/:index'
+      render={(props) => (
+        <ContactDetails {...props}
+                        contacts={this.state.contactsList}
+                        
+        />
+      )}
+      />
+      </div>
         
       </div>
     );
